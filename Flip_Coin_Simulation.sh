@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-echo Welcome to Flip Coin Simulation
+echo Welcome To Flip Coin Simulation
 
 heads=0
 tails=0
