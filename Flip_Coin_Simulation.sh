@@ -15,16 +15,34 @@ function flip()
 		((tails++))
 	fi
 }
-while [ $heads -le 21 -a $tails -le 21 ]
+while [ $heads -lt 21 -a $tails -lt 21 ]
 do
 	flip
 done
-if [ $heads -gt $tails ]
+num=1
+function check()
+{
+	echo heads won $heads times
+	echo Tails won $tails times
+	if [ $heads -gt $tails ]
+	then
+		echo Heads Win by $(($heads-$tails))
+	elif [ $tails -gt $heads ]
+	then
+		echo Tails Win by $(($tails-$heads))
+	else
+		echo Its Tie
+		((num++))
+	fi
+}
+check
+if [ $num == 2 ]
 then
-	echo Heads Win by $(($heads-$tails))
-elif [ $tails -gt $heads ]
-then
-	echo Tails Win by $(($tails-$heads))
-else
-	echo Its Tie
+	heads=1
+	tails=1
+	while [ $(($heads-$tails)) -ne 2 -a $(($tails-$heads)) -ne 2 ]
+	do
+		flip
+	done
+	check
 fi
